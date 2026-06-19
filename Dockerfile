@@ -1,18 +1,11 @@
 FROM nvcr.io/nvidia/nemo-curator:25.09
 
-ARG USERNAME=appuser
-ARG USER_UID=1000
-ARG USER_GID=$USER_UID
-RUN groupadd --gid $USER_GID $USERNAME \
-    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
-    && apt-get update && apt-get install -y sudo \
-    && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
-    && chmod 0440 /etc/sudoers.d/$USERNAME
+# manually patch gpustat to handle "??" values properly on GB10 unified memory boxes
+# without this patch gpustat will crash the entire pipeline when NVML returns "??" for available VRAM
+RUN sed -i "s/return int(self.entry\['memory.used'\])/v = self.entry.get('memory.used'); return 0 if v in (None, '??') else int(v)/g" /opt/venv/lib/python*/site-packages/gpustat/core.py \
+ && sed -i "s/return int(self.entry\['memory.total'\])/v = self.entry.get('memory.total'); return 0 if v in (None, '??') else int(v)/g" /opt/venv/lib/python*/site-packages/gpustat/core.py
 
 WORKDIR /workspace
 COPY src/ ./src/
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
 
-USER $USERNAME
 CMD ["bash"]
