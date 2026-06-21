@@ -222,8 +222,8 @@ def main():
     
         # create the pipeline
         pipeline = Pipeline(
-            name = "OPUS ES 2018 Download and Extract Pipeline",
-            description = "Pipeline to download and extract the OPUS ES 2018 dataset",
+            name = "OPUS ES Download and Extract Pipeline",
+            description = "Pipeline to download and extract the OPUS ES dataset",
         )
         # Create custom data loading stage
         data_stage = OPUSDataStage(download_dir="/datasets", url_limit=3, record_limit=10000)
