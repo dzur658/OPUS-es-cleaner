@@ -16,6 +16,7 @@ docker run --gpus all --rm \
     --network=host \
     --mount type=bind,source=./data,target=/datasets \
     --mount type=bind,source=./output,target=/opus_output \
+    --mount type=bind,source=./models,target=/models \
     -w /workspace \
     opus-es-cleaner:latest \
-    python src/download_opus_data.py
+    ./src/orchestrator.sh
