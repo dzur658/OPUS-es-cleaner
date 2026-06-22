@@ -24,5 +24,15 @@ else
     ./src/download_fasttext_model.sh
 fi
 
-# run cleaning script to clean the OPUS datasets
-python src/clean_opus_data.py
+# if opus_es_cleaned exists we can skip the cleaning step
+
+if [ -d "/datasets/opus_es_cleaned" ]; then
+    echo "Cleaned OPUS datasets already exist, skipping cleaning step."
+else
+    echo "Cleaned OPUS datasets not found, running cleaning step..."
+    python src/clean_opus_data.py
+fi
+
+# run deduplication script to deduplicate the cleaned OPUS datasets
+echo "Running deduplication step..."
+python src/deduplication_opus.py
