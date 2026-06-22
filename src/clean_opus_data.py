@@ -87,7 +87,7 @@ def main():
 
         # perform length filtering prior to language identification
         pipeline.add_stage(ScoreFilter(
-            filter_obj=WordCountFilter(min_words=3),
+            filter_obj=WordCountFilter(min_words=100),
             text_field="content",
             score_field="word_count"
         ))

@@ -10,6 +10,7 @@ from requests.adapters import HTTPAdapter
 import gzip
 import shutil
 import os
+import time
 
 from typing import Any
 from collections.abc import Iterator
@@ -142,7 +143,11 @@ class OPUSIterator(DocumentIterator):
         year = filename[1:5]
 
         with open(file_path, "r", encoding="utf-8") as f:
-            for idx, line in enumerate(f):
+
+            # split on speaker turns (indicated by `-`)
+            chunks = f.read().split("-")
+
+            for idx, line in enumerate(chunks):
                 if idx % self.log_frequency == 0:
                     print(f"Processing line {idx}...")
                 yield {"content": line, "metadata": {"family": "OPUS ES", "year": year, "source_file": file_path}, "id": idx}
