@@ -5,10 +5,13 @@ the Spanish Open Subtitles Corpus found [here](https://opus.nlpl.eu/datasets/Ope
 
 By default the NeMo Curator pipeline will clean the 2013, 2016, and 2018 releases.
 
+## HuggingFace Dataset 🤗
+If you want to use the resulting dataset, you can download the parquet file from HuggingFace [here](https://huggingface.co/datasets/dzur658/opus-es-monologues)
+
 ## Quick Start
 
 To get started simply run the `run_cleaning.sh` bash script. The script
-will set up directories to mount, pull/start the [NeMo Curator docker container 25.09](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/nemo-curator?version=25.09), pull the Spanish OPUS datasets and convert to parquet, clean the data (minimal), and run MinHash/LSH fuzzy deduplication. The resulting datast will be dropped in the `output` directory and is uploaded to [HuggingFace here](#).
+will set up directories to mount, pull/start the [NeMo Curator docker container 25.09](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/nemo-curator?version=25.09), pull the Spanish OPUS datasets and convert to parquet, clean the data (minimal), and run MinHash/LSH fuzzy deduplication. The resulting datast will be dropped in the `output` directory and is uploaded to [HuggingFace here](https://huggingface.co/datasets/dzur658/opus-es-monologues).
 
 Execute the following script in the root of the repository.
 ```bash
@@ -50,4 +53,4 @@ without a GPU (only deduplicaton requires a GPU). This project has been tested o
 Stores experiments ran during the development of the repository. Methods attempted here were not implemented into the final pipeline, but could be of some value for different extraction tasks.
 
 ## Acknowledgements
-Raw data is proveded by the [OpenSubtitles Project](http://www.opensubtitles.org/), thank you!
+Raw data is provided by the [OpenSubtitles Project](http://www.opensubtitles.org/), thank you!
