@@ -6,7 +6,7 @@ the Spanish Open Subtitles Corpus found [here](https://opus.nlpl.eu/datasets/Ope
 By default the NeMo Curator pipeline will clean the 2013, 2016, and 2018 releases.
 
 ## HuggingFace Dataset 🤗
-If you want to use the resulting dataset, you can download the parquet file from HuggingFace [here](https://huggingface.co/datasets/dzur658/opus-es-monologues)
+If you want to use the resulting dataset, you can download the parquet file from HuggingFace [here](https://huggingface.co/datasets/dzur658/opus-es-monologues).
 
 ## Quick Start
 
