@@ -1,19 +1,12 @@
 #!/bin/bash
+set -euo pipefail
 
 # Assumes Docker and appropriate Nvidia CUDA drivers are already present on the HOST machine!
 
-# before running container initialize mount directories in the repo if not already present
-if [ ! -d "./data" ]; then
-    mkdir ./data
-fi
-
-if [ ! -d "./output" ]; then
-    mkdir ./output
-fi
-
-if [ ! -d "./models" ]; then
-    mkdir ./models
-fi
+# before running container initialize mount directories in the repo if not already present, fail on error
+mkdir -p ./data>&2
+mkdir -p ./output>&2
+mkdir -p ./models>&2
 
 # pull docker image
 docker pull nvcr.io/nvidia/nemo-curator:25.09
