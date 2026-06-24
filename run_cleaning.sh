@@ -15,7 +15,7 @@ docker pull nvcr.io/nvidia/nemo-curator:25.09
 docker build -t opus-es-cleaner:latest .
 
 # Run cleaning
-# Downloads and cleans OPUS 2018 ES (monolingual) by default
+# Downloads and cleans OPUS 2013, 2016, and 2018 ES (monolingual) by default
 docker run --gpus all --rm \
     --ipc=host \
     --pid=host \
